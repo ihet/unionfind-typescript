@@ -1,12 +1,11 @@
 {
   "name": "unionfind-typescript",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "UnionFind that accepts any data use TypeScript",
   "main": "dist/index.js",
   "scripts": {
     "build-tsc": "tsc",
-    "test": "mocha ./test",
-    "build-test-report": "nyc mocha ./test",
+    "test": "nyc mocha ./test",
     "doc": "typedoc  --out ./doc ./src --readme README.MD"
   },
   "nyc": {
@@ -36,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "codecov": "^3.2.0",
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
     "typedoc": "^0.14.2",

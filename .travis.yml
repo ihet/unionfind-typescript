@@ -1,3 +1,22 @@
 language: node_js
 node_js:
-  - "8"
+    - 10
+    - 9
+    - 8
+    - 7
+    - 6
+branches:
+  only:
+    - master
+scripts:
+  - npm install codecov -g
+  - npm test
+  - codecov -f coverage/*.json
+after_success:
+  - codecov
+deploy:
+  provider: npm
+  email: "ihetqxl@gmail.com"
+  api_key: "3f0de215-6336-47fe-bab4-773012832f05"
+  on:
+    branch: master
