@@ -1,12 +1,13 @@
 {
-  "name": "unlimited-union-find",
-  "version": "1.0.0",
-  "description": "UnionFind accept any data",
+  "name": "unionfind-typescript",
+  "version": "1.0.1",
+  "description": "UnionFind that accepts any data use TypeScript",
   "main": "dist/index.js",
   "scripts": {
     "build-tsc": "tsc",
     "test": "mocha ./test",
-    "build-test-report": "nyc mocha ./test"
+    "build-test-report": "nyc mocha ./test",
+    "doc": "typedoc  --out ./doc ./src --readme README.MD"
   },
   "nyc": {
     "extension": [
@@ -21,12 +22,24 @@
     ],
     "all": true
   },
-  "author": "ihet",
+  "contributors": [
+    {
+      "name": "ihet",
+      "email": "ihetqxl@gmail.com"
+    }
+  ],
   "license": "ISC",
+  "homepage": "https://github.com/ihet/unionfindjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ihet/unionfindjs"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-markdown": "^1.1.26",
     "typescript": "^3.2.2",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"

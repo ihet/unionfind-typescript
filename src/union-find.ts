@@ -11,7 +11,7 @@ export class UnionNode{
     }
 
     /**
-     * 递归计算节点高度
+     * Get UnionNode's rank
      */
     calculateRank():number{
         function find(node:UnionNode,rank:number):number{
@@ -28,19 +28,34 @@ export class UnionNode{
  * Config Interface Start
  ************************************************************/
 
-interface customToString {
+/**
+ * @interface customToString
+ */
+export interface customToString {
     (node?:any,unionNode?:UnionNode,unionFind?:UnionFind):string
 }
-enum repeatExistNode{
+
+/**
+ * @enum repeatExistNode
+ */
+export enum repeatExistNode{
     ignore ="ignore",
     warning ="warning",
     error ="error",
 }
-enum unionMode {
+
+/**
+ * @enum unionMode
+ */
+export enum unionMode {
     normal = "normal",
     height = "height",
     compress = "compress"
 }
+
+/**
+ * @interface Config
+ */
 export interface Config {
     customToString?:customToString,
     unionMode?: unionMode,
@@ -74,10 +89,11 @@ export class UnionFind{
         return this._config;
     }
     /**
-     * 初始化
-     * @param nodes
-     * @param path
-     * @param config
+     * Initialize
+     * @constructor
+     * @param nodes Nodes Array
+     * @param path Path Array
+     * @param config Config Object
      */
     constructor(nodes?: any[] | Set<any> , path?: [][] | Set<any> , config: Config = {}){
         this._defaultConfig(config);
@@ -91,9 +107,9 @@ export class UnionFind{
     }
 
     /**
-     * @description 添加一颗子树
-     * @param nodes
-     * @param paths
+     * @description Add  subtrees
+     * @param nodes Nodes Array
+     * @param paths Path Array
      */
     addSubtree(nodes?: any[] | Set<any>,paths?:any[][] | Set<any[]>):void{
         if(!nodes && !paths) return;
@@ -151,7 +167,8 @@ export class UnionFind{
         },this)
     }
     /**
-     * @description 定义配置
+     * @description defaultConfig
+     * @param config Config Object
      */
     protected _defaultConfig(config:Config):void{
         this._config = {
@@ -161,14 +178,14 @@ export class UnionFind{
                 return String(node);
             }
         };
-        this.changeSetting(config);
+        this.changeSettings(config);
     }
 
     /**
-     * @description 改变设置
-     * @param config
+     * @description Change Settings
+     * @param config Config Object
      */
-    changeSetting(config:Config):void{
+    changeSettings(config:Config):void{
         if(typeof config === "object"){
             if(config.unionMode){
                 let modes = new Set([unionMode.height,unionMode.compress,unionMode.normal]);
@@ -192,9 +209,9 @@ export class UnionFind{
     }
 
     /**
-     * @description 连接两个节点
-     * @param nodeA
-     * @param nodeB
+     * @description Union two Nodes
+     * @param nodeA target node
+     * @param nodeB source node
      */
     union (nodeA:UnionNode,nodeB:UnionNode):void;
     union (nodeA:any,nodeB:any):void
@@ -243,9 +260,7 @@ export class UnionFind{
         nodeA.children.add(rootB);
     }
 
-    /**
-     * @description 连接两点，新的节点将连接到根节点上
-     */
+
     protected _unionAutoCompress(nodeA:UnionNode,nodeB:UnionNode):void{
 
         let rootA = this.findRoot(nodeA);
@@ -264,9 +279,6 @@ export class UnionFind{
 
     }
 
-    /**
-     * @description 连接两点，新的节点将连接到轶最小的节点上
-     */
     protected _unionByHeight(nodeA:UnionNode,nodeB:UnionNode):void{
         let rootA = this.findRoot(nodeA) , minNode = rootA, minRank;
         function findMin(currentNode:UnionNode, rank:number) {
@@ -293,8 +305,8 @@ export class UnionFind{
         this._unionNormal(minNode,nodeB);
     }
     /**
-     * @description 查找根节点
-     * @param node
+     * @description Find root node
+     * @param node A node to find root node
      */
     findRoot(node:UnionNode):UnionNode;
     findRoot(node:any):any;
@@ -329,8 +341,8 @@ export class UnionFind{
     }
 
     /**
-     * @description 根据节点获取联通节点
-     * @param node
+     * @description Get UnionNode
+     * @param node A key node
      */
     getUnionNode(node:any):UnionNode|undefined{
         if(typeof node == "undefined" || node === null){
@@ -340,9 +352,9 @@ export class UnionFind{
     }
 
     /**
-     * @description 两个节点是否联通
-     * @param nodeA
-     * @param nodeB
+     * @description Whether two nodes are connected
+     * @param nodeA The first node
+     * @param nodeB The second node
      */
     isConnected(nodeA:UnionNode,nodeB:UnionNode):boolean
     isConnected(nodeA:any,nodeB:any):boolean
@@ -376,7 +388,7 @@ export class UnionFind{
     }
 
     /**
-     * @description 压缩路径
+     * @description Compress all path
      */
     compress():void{
 
@@ -390,7 +402,8 @@ export class UnionFind{
     }
 
     /**
-     * @description 显示为树
+     * @description returns a string representing all subtrees
+     * @return
      */
     toString():string{
         let treeStr = "";
@@ -412,7 +425,7 @@ export class UnionFind{
                 show(childNode,rank+1);
             })
         }
-        this._subtree.forEach( (value, key)=>{
+        this._subtree.forEach( (value)=>{
             show(value,0);
             treeStr += "\n\n" ;
         },this);

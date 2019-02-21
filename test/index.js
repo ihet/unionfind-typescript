@@ -1,6 +1,8 @@
 
 const UnionFind = require( "../dist/union-find").UnionFind;
 const UnionNode = require( "../dist/union-find").UnionNode;
+const enumUnionMode = require( "../dist/union-find").unionMode;
+const enumRepeatExistNode = require( "../dist/union-find").repeatExistNode;
 const expect = require("chai").expect;
 
 
@@ -55,8 +57,8 @@ describe("Start UnionFind Test",()=>{
                     ["a","b","c"],["d","e"]
                 ];
                 config = {
-                    repeatExistNode:"error",
-                    unionMode:"compress",
+                    repeatExistNode:enumRepeatExistNode.error,
+                    unionMode:enumUnionMode.compress,
                     customToString:function (node) {
                         return "<" + node + ">";
                     }
@@ -157,13 +159,13 @@ describe("Start UnionFind Test",()=>{
             })
         });
         
-        describe("#changeSetting()",function () {
+        describe("#changeSettings()",function () {
             let union_find = new UnionFind(["a","b","c"],[["a","b","c"]]);
             it("Should run correctly",function () {
-                union_find.changeSetting(
+                union_find.changeSettings(
                     {
-                        unionMode:"compress",
-                        repeatExistNode:"error",
+                        unionMode:enumUnionMode.compress,
+                        repeatExistNode:enumRepeatExistNode.error,
                         customToString:function (node) {
                             return "<" + String(node) + ">";
                         }
@@ -173,28 +175,28 @@ describe("Start UnionFind Test",()=>{
                 expect(union_find.getUnionNode("d").parent).to.be.equal(union_find.getUnionNode("a"));
                 expect(function(){union_find.addSubtree(["a"])}).to.be.throw();
                 expect(union_find.config.customToString("d")).to.equal("<d>");
-                union_find.changeSetting({
-                    unionMode:"height",
-                    repeatExistNode:"ignore"
+                union_find.changeSettings({
+                    unionMode:enumUnionMode.height,
+                    repeatExistNode:enumRepeatExistNode.ignore
                 });
                 union_find.addSubtree(["e"],[["c","e"]]);
                 expect(union_find.getUnionNode("e").parent).to.be.equal(union_find.getUnionNode("d"));
             });
             it("An error should be throw when the type does not match",function () {
                 function changeConfig() {
-                    union_find.changeSetting({
+                    union_find.changeSettings({
                         unionMode:123
                     });
                 }
                 expect(changeConfig).to.be.throw(TypeError);
                 function changeConfig2() {
-                    union_find.changeSetting({
+                    union_find.changeSettings({
                         repeatExistNode:"test"
                     });
                 }
                 expect(changeConfig2).to.be.throw(TypeError);
                 function changeConfig3() {
-                    union_find.changeSetting({
+                    union_find.changeSettings({
                         customToString:{"name":"a"}
                     });
                 }
@@ -244,7 +246,7 @@ describe("Start UnionFind Test",()=>{
                 ["a","b","c","d","e"],[["a","b","c"]]
             );
             it("Should run correctly",function () {
-                union_find.changeSetting({unionMode:"compress"});
+                union_find.changeSettings({unionMode:enumUnionMode.compress});
                 union_find.union("c","a");
                 expect(union_find.getUnionNode("c").parent.node).to.be.equal("a");
             })
