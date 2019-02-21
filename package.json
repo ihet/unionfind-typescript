@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build-tsc": "tsc",
-    "test": "npm run build-tsc && mkdir coverage  && nyc mocha ./test --reporter=json > coverage/coverage.json",
-    "doc": "typedoc  --out ./doc ./src --readme README.MD"
+    "mocha-test": "nyc mocha ./test/*.js --reporter=json > coverage/coverage.json",
+    "test": "npm run build-tsc && npm run mocha-test &&  nyc report --reporter=text-lcov > coverage/coverage.lcov",
+    "doc": "typedoc  --out ./doc ./src --readme README.MD",
+    "report": "codecov --disable=gcov -f ./coverage/coverage.lcov --token=73c419d4-b2c6-459d-b8dd-53992c943b68"
   },
   "nyc": {
     "extension": [
