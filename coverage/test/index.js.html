@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>202/202</span>
+        <span class='fraction'>203/203</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>201/201</span>
+        <span class='fraction'>202/202</span>
       </div>
     </div>
     <p class="quiet">
@@ -386,11 +386,18 @@
 <a name='L338'></a><a href='#L338'>338</a>
 <a name='L339'></a><a href='#L339'>339</a>
 <a name='L340'></a><a href='#L340'>340</a>
-<a name='L341'></a><a href='#L341'>341</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -400,8 +407,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -449,6 +458,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -729,8 +739,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
 const UnionFind = require( "../dist/union-find").UnionFind;
 const UnionNode = require( "../dist/union-find").UnionNode;
+const enumUnionMode = require( "../dist/union-find").unionMode;
+const enumRepeatExistNode = require( "../dist/union-find").repeatExistNode;
 const expect = require("chai").expect;
-const mocha = require("mocha");
+&nbsp;
 &nbsp;
 describe("Start UnionFind Test",()=&gt;{
 &nbsp;
@@ -740,10 +752,12 @@ describe("Start UnionFind Test",()=&gt;{
                 let union_find;
                 let nodes = ["a","b","c","d","e","f","g"];
                 let path = [["a","b","c"],["d","e"],["g","a"]];
-                let fn = function(){
+&nbsp;
+                expect(function(){
                     union_find = new UnionFind(nodes,path);
-                };
-                expect(fn).to.not.throw();
+                }).to.not.throw();
+&nbsp;
+                union_find = new UnionFind(nodes,path);
                 expect(union_find.nodes.size).to.be.equal(nodes.length);
                 expect(union_find.subtree.size).to.be.equal(3);
                 expect(union_find.getUnionNode("c").calculateRank()).to.be.equal(3);
@@ -758,19 +772,19 @@ describe("Start UnionFind Test",()=&gt;{
                 let union_find,nodes,path;
                 nodes = new Set(["a","b","c","d","e","f"]);
                 path = new Set([["a","b","c"],["d","e"]]);
-                let fn = function(){
+                expect(function(){
                     union_find = new UnionFind(nodes,path);
-                };
-                expect(fn).to.not.throw();
+                }).to.not.throw();
+                union_find = new UnionFind(nodes,path);
                 expect(union_find.nodes.size).to.be.equal(nodes.size);
                 expect(union_find.subtree.size).to.be.equal(3);
             });
             it("Should be properly initialized with no arguments",function () {
                 let union_find;
-                let fn = function(){
+                expect(function(){
                     union_find = new UnionFind();
-                };
-                expect(fn).to.not.throw();
+                }).to.not.throw();
+                union_find = new UnionFind();
                 expect(union_find.nodes.size).to.be.equal(0);
                 expect(union_find.subtree.size).to.be.equal(0);
             });
@@ -781,16 +795,17 @@ describe("Start UnionFind Test",()=&gt;{
                     ["a","b","c"],["d","e"]
                 ];
                 config = {
-                    repeatExistNode:"error",
-                    unionMode:"compress",
+                    repeatExistNode:enumRepeatExistNode.error,
+                    unionMode:enumUnionMode.compress,
                     customToString:function (node) {
                         return "&lt;" + node + "&gt;";
                     }
                 };
-                let init = function(){
+                expect(function(){
                     union_find = new UnionFind(nodes,path,config);
-                };
-                expect(init).to.not.throw();
+                }).to.not.throw();
+&nbsp;
+                union_find = new UnionFind(nodes,path,config);
                 let addSubtree = function(){
                     union_find.addSubtree(["a","b"])
                 };
@@ -882,13 +897,13 @@ describe("Start UnionFind Test",()=&gt;{
             })
         });
         
-        describe("#changeSetting()",function () {
+        describe("#changeSettings()",function () {
             let union_find = new UnionFind(["a","b","c"],[["a","b","c"]]);
             it("Should run correctly",function () {
-                union_find.changeSetting(
+                union_find.changeSettings(
                     {
-                        unionMode:"compress",
-                        repeatExistNode:"error",
+                        unionMode:enumUnionMode.compress,
+                        repeatExistNode:enumRepeatExistNode.error,
                         customToString:function (node) {
                             return "&lt;" + String(node) + "&gt;";
                         }
@@ -898,28 +913,28 @@ describe("Start UnionFind Test",()=&gt;{
                 expect(union_find.getUnionNode("d").parent).to.be.equal(union_find.getUnionNode("a"));
                 expect(function(){union_find.addSubtree(["a"])}).to.be.throw();
                 expect(union_find.config.customToString("d")).to.equal("&lt;d&gt;");
-                union_find.changeSetting({
-                    unionMode:"height",
-                    repeatExistNode:"ignore"
+                union_find.changeSettings({
+                    unionMode:enumUnionMode.height,
+                    repeatExistNode:enumRepeatExistNode.ignore
                 });
                 union_find.addSubtree(["e"],[["c","e"]]);
                 expect(union_find.getUnionNode("e").parent).to.be.equal(union_find.getUnionNode("d"));
             });
             it("An error should be throw when the type does not match",function () {
                 function changeConfig() {
-                    union_find.changeSetting({
+                    union_find.changeSettings({
                         unionMode:123
                     });
                 }
                 expect(changeConfig).to.be.throw(TypeError);
                 function changeConfig2() {
-                    union_find.changeSetting({
+                    union_find.changeSettings({
                         repeatExistNode:"test"
                     });
                 }
                 expect(changeConfig2).to.be.throw(TypeError);
                 function changeConfig3() {
-                    union_find.changeSetting({
+                    union_find.changeSettings({
                         customToString:{"name":"a"}
                     });
                 }
@@ -969,7 +984,7 @@ describe("Start UnionFind Test",()=&gt;{
                 ["a","b","c","d","e"],[["a","b","c"]]
             );
             it("Should run correctly",function () {
-                union_find.changeSetting({unionMode:"compress"});
+                union_find.changeSettings({unionMode:enumUnionMode.compress});
                 union_find.union("c","a");
                 expect(union_find.getUnionNode("c").parent.node).to.be.equal("a");
             })
@@ -1072,7 +1087,7 @@ describe("Start UnionFind Test",()=&gt;{
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Feb 21 2019 15:01:43 GMT+0800 (GMT+08:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Feb 21 2019 21:07:37 GMT+0800 (GMT+08:00)
 </div>
 </div>
 <script src="..\prettify.js"></script>

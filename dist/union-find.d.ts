@@ -14,19 +14,31 @@ export declare class UnionNode {
 /************************************************************
  * Config Interface Start
  ************************************************************/
+/**
+ * @interface customToString
+ */
 export interface customToString {
     (node?: any, unionNode?: UnionNode, unionFind?: UnionFind): string;
 }
+/**
+ * @enum repeatExistNode
+ */
 export declare enum repeatExistNode {
     ignore = "ignore",
     warning = "warning",
     error = "error"
 }
+/**
+ * @enum unionMode
+ */
 export declare enum unionMode {
     normal = "normal",
     height = "height",
     compress = "compress"
 }
+/**
+ * @interface Config
+ */
 export interface Config {
     customToString?: customToString;
     unionMode?: unionMode;
@@ -59,68 +71,64 @@ export declare class UnionFind {
     /**
      * Initialize
      * @constructor
-     * @param nodes
-     * @param path
-     * @param config
+     * @param nodes Nodes Array
+     * @param path Path Array
+     * @param config Config Object
      */
     constructor(nodes?: any[] | Set<any>, path?: [][] | Set<any>, config?: Config);
     /**
-     * @description Add an subtree
-     * @param nodes
-     * @param paths
+     * @description Add  subtrees
+     * @param nodes Nodes Array
+     * @param paths Path Array
      */
     addSubtree(nodes?: any[] | Set<any>, paths?: any[][] | Set<any[]>): void;
     protected _addNodes(nodes: any[] | Set<any>): void;
     protected _addPaths(path: any[][] | Set<any[]>): void;
     /**
      * @description defaultConfig
+     * @param config Config Object
      */
     protected _defaultConfig(config: Config): void;
     /**
      * @description Change Settings
-     * @param config
+     * @param config Config Object
      */
     changeSettings(config: Config): void;
     /**
-     * @description 连接两个节点
-     * @param nodeA
-     * @param nodeB
+     * @description Union two Nodes
+     * @param nodeA target node
+     * @param nodeB source node
      */
     union(nodeA: UnionNode, nodeB: UnionNode): void;
     union(nodeA: any, nodeB: any): void;
     protected _unionNormal(nodeA: UnionNode, nodeB?: UnionNode): void;
-    /**
-     * @description 连接两点，新的节点将连接到根节点上
-     */
     protected _unionAutoCompress(nodeA: UnionNode, nodeB: UnionNode): void;
-    /**
-     * @description 连接两点，新的节点将连接到轶最小的节点上
-     */
     protected _unionByHeight(nodeA: UnionNode, nodeB: UnionNode): void;
     /**
-     * @description 查找根节点
-     * @param node
+     * @description Find root node
+     * @param node A node to find root node
      */
     findRoot(node: UnionNode): UnionNode;
     findRoot(node: any): any;
     /**
-     * @description 根据节点获取联通节点
-     * @param node
+     * @description Get UnionNode
+     * @param node A key node
      */
     getUnionNode(node: any): UnionNode | undefined;
     /**
-     * @description 两个节点是否联通
-     * @param nodeA
-     * @param nodeB
+     * @description Whether two nodes are connected
+     * @param nodeA The first node
+     * @param nodeB The second node
      */
     isConnected(nodeA: UnionNode, nodeB: UnionNode): boolean;
     isConnected(nodeA: any, nodeB: any): boolean;
     /**
-     * @description 压缩路径
+     * @description Compress all path
      */
     compress(): void;
     /**
-     * @description 显示为树
+     * @description returns a string representing all subtrees
+     * @return
      */
     toString(): string;
 }

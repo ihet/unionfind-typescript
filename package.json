@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build-tsc": "tsc",
-    "test": "nyc mocha ./test",
+    "test": "npm run build-tsc && nyc mocha ./test",
     "doc": "typedoc  --out ./doc ./src --readme README.MD"
   },
   "nyc": {

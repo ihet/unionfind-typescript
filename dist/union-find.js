@@ -34,12 +34,18 @@ var UnionNode = /** @class */ (function () {
     return UnionNode;
 }());
 exports.UnionNode = UnionNode;
+/**
+ * @enum repeatExistNode
+ */
 var repeatExistNode;
 (function (repeatExistNode) {
     repeatExistNode["ignore"] = "ignore";
     repeatExistNode["warning"] = "warning";
     repeatExistNode["error"] = "error";
 })(repeatExistNode = exports.repeatExistNode || (exports.repeatExistNode = {}));
+/**
+ * @enum unionMode
+ */
 var unionMode;
 (function (unionMode) {
     unionMode["normal"] = "normal";
@@ -56,9 +62,9 @@ var UnionFind = /** @class */ (function () {
     /**
      * Initialize
      * @constructor
-     * @param nodes
-     * @param path
-     * @param config
+     * @param nodes Nodes Array
+     * @param path Path Array
+     * @param config Config Object
      */
     function UnionFind(nodes, path, config) {
         if (config === void 0) { config = {}; }
@@ -91,9 +97,9 @@ var UnionFind = /** @class */ (function () {
         configurable: true
     });
     /**
-     * @description Add an subtree
-     * @param nodes
-     * @param paths
+     * @description Add  subtrees
+     * @param nodes Nodes Array
+     * @param paths Path Array
      */
     UnionFind.prototype.addSubtree = function (nodes, paths) {
         if (!nodes && !paths)
@@ -156,6 +162,7 @@ var UnionFind = /** @class */ (function () {
     };
     /**
      * @description defaultConfig
+     * @param config Config Object
      */
     UnionFind.prototype._defaultConfig = function (config) {
         this._config = {
@@ -169,7 +176,7 @@ var UnionFind = /** @class */ (function () {
     };
     /**
      * @description Change Settings
-     * @param config
+     * @param config Config Object
      */
     UnionFind.prototype.changeSettings = function (config) {
         if (typeof config === "object") {
@@ -237,9 +244,6 @@ var UnionFind = /** @class */ (function () {
         rootB.parent = nodeA;
         nodeA.children.add(rootB);
     };
-    /**
-     * @description 连接两点，新的节点将连接到根节点上
-     */
     UnionFind.prototype._unionAutoCompress = function (nodeA, nodeB) {
         var rootA = this.findRoot(nodeA);
         if (nodeB === rootA) {
@@ -255,9 +259,6 @@ var UnionFind = /** @class */ (function () {
         nodeB.parent = rootA;
         rootA.children.add(nodeB);
     };
-    /**
-     * @description 连接两点，新的节点将连接到轶最小的节点上
-     */
     UnionFind.prototype._unionByHeight = function (nodeA, nodeB) {
         var rootA = this.findRoot(nodeA), minNode = rootA, minRank;
         function findMin(currentNode, rank) {
@@ -328,8 +329,8 @@ var UnionFind = /** @class */ (function () {
         return find(_node);
     };
     /**
-     * @description 根据节点获取联通节点
-     * @param node
+     * @description Get UnionNode
+     * @param node A key node
      */
     UnionFind.prototype.getUnionNode = function (node) {
         if (typeof node == "undefined" || node === null) {
@@ -365,7 +366,7 @@ var UnionFind = /** @class */ (function () {
         return rootA === rootB;
     };
     /**
-     * @description 压缩路径
+     * @description Compress all path
      */
     UnionFind.prototype.compress = function () {
         var _this = this;
@@ -378,7 +379,8 @@ var UnionFind = /** @class */ (function () {
         }, this);
     };
     /**
-     * @description 显示为树
+     * @description returns a string representing all subtrees
+     * @return
      */
     UnionFind.prototype.toString = function () {
         var treeStr = "";
