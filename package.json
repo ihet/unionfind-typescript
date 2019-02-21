@@ -7,8 +7,7 @@
     "build-tsc": "tsc",
     "mocha-test": "nyc mocha ./test/*.js --reporter=json > coverage/coverage.json",
     "test": "npm run build-tsc && npm run mocha-test &&  nyc report --reporter=text-lcov > coverage/coverage.lcov",
-    "doc": "typedoc  --out ./doc ./src --readme README.MD",
-    "report": "codecov --disable=gcov -f ./coverage/coverage.lcov --token=73c419d4-b2c6-459d-b8dd-53992c943b68"
+    "doc": "typedoc  --out ./doc ./src --readme README.MD"
   },
   "nyc": {
     "extension": [
@@ -30,10 +29,9 @@
     }
   ],
   "license": "ISC",
-  "homepage": "https://github.com/ihet/unionfindjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ihet/unionfindjs"
+    "url": "https://github.com/ihet/unionfind-typescript"
   },
   "devDependencies": {
     "chai": "^4.2.0",

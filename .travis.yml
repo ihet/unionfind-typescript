@@ -5,18 +5,19 @@ node_js:
     - 8
     - 7
     - 6
+    - 5
+    - 4
 branches:
   only:
     - master
 scripts:
   - npm install codecov -g
-  - npm build
 after_success:
   - codecov
 deploy:
   provider: npm
-  email: "ihetqxl@gmail.com"
-  api_key: "3f0de215-6336-47fe-bab4-773012832f05"
+  email: "ihetqxl@gmail.com",
+  api_key: "88479683-7323-4657-8f71-87976a9f41f2"
   on:
     branch: master
   skip_cleanup: true

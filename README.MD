@@ -1,6 +1,8 @@
 # Union Find
 This is a UnionFind module that use TypeScript
 
+[![codecov](https://codecov.io/gh/ihet/unionfind-typescript/branch/master/graph/badge.svg)](https://codecov.io/gh/ihet/unionfind-typescript)
+[![Build Status](https://www.travis-ci.org/ihet/unionfind-typescript.svg?branch=master)](https://www.travis-ci.org/ihet/unionfind-typescript)
 ## Installation
 `$ npm install --save unionfind-typescript`
 
