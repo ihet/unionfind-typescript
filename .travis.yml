@@ -19,3 +19,4 @@ deploy:
   api_key: "3f0de215-6336-47fe-bab4-773012832f05"
   on:
     branch: master
+  skip_cleanup: true
