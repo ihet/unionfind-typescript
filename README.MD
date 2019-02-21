@@ -54,13 +54,13 @@ console.log(e.parent.node) // =>"a"
 option | value | description |
 ---|---|---
 unionMode | **default : normal**  | How to union
-|  normal | Union two subtrees
-|  height | Balance the height of the tree
-|  compress | Union two subtrees,the second tree should link to the first nodes'root
+| |  normal | Union two subtrees
+| |  height | Balance the height of the tree
+| |  compress | Union two subtrees,the second tree should link to the first nodes'root
 |repeatExistNode | **default : ignore** | How to deal with when there are duplicate nodes detected
-|   ignore | Ignore
-|   warning | Console a waring message
-|  error | Throw an error
+| |   ignore | Ignore
+| |   warning | Console a waring message
+| |  error | Throw an error
 
 
 
