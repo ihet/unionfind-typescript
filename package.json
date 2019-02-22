@@ -1,6 +1,6 @@
 {
   "name": "unionfind-typescript",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "UnionFind that accepts any data use TypeScript",
   "main": "dist/index.js",
   "scripts": {
