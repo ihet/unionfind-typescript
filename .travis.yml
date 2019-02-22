@@ -15,8 +15,8 @@ after_success:
   - codecov
 deploy:
   provider: npm
-  email: "ihetqxl@gmail.com",
+  email: "ihetqxl@gmail.com"
   api_key: "88479683-7323-4657-8f71-87976a9f41f2"
+  skip_cleanup: true
   on:
     branch: master
-  skip_cleanup: true
