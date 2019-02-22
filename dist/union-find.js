@@ -181,14 +181,12 @@ var UnionFind = /** @class */ (function () {
     UnionFind.prototype.changeSettings = function (config) {
         if (typeof config === "object") {
             if (config.unionMode) {
-                var modes = new Set([unionMode.height, unionMode.compress, unionMode.normal]);
-                if (!modes.has(config.unionMode)) {
+                if (!Object.prototype.hasOwnProperty.call(unionMode, [config.unionMode])) {
                     throw new TypeError("Config unionMode is illegal");
                 }
             }
             if (config.repeatExistNode) {
-                var modes = new Set([repeatExistNode.ignore, repeatExistNode.error, repeatExistNode.warning]);
-                if (!modes.has(config.repeatExistNode)) {
+                if (!Object.prototype.hasOwnProperty.call(repeatExistNode, [config.repeatExistNode])) {
                     throw new TypeError("Config repeatExistNode is illegal");
                 }
             }

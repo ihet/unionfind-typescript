@@ -11,10 +11,10 @@ This is a UnionFind module that use TypeScript
 
 ```
 //import UnionFind
-const UnionFind = require( "../dist/union-find").UnionFind;
+const UnionFind = require( "unionfind-typescript").UnionFind;
 //import enums
-const enumUnionMode = require( "../dist/union-find").unionMode;
-const enumRepeatExistNode = require( "../dist/union-find").repeatExistNode;
+const enumUnionMode = require( "unionfind-typescript").unionMode;
+const enumRepeatExistNode = require( "unionfind-typescript").repeatExistNode;
 
 //Initialize
 let nodes= ["a","b",123,{"name":"d"},"e"];

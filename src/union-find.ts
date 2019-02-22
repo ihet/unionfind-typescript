@@ -110,6 +110,15 @@ export class UnionFind{
      * @description Add  subtrees
      * @param nodes Nodes Array
      * @param paths Path Array
+     * @example <caption>Base Usage</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c"]);
+     * unionFind.addSubtree(
+     *     ["d","e"],
+     *     [ ["a","b","c"],["d","e"]]
+     * );
+     * // => "a","b","c" is a subtree, "d","e" is a subtree
+     * </pre>
      */
     addSubtree(nodes?: any[] | Set<any>,paths?:any[][] | Set<any[]>):void{
         if(!nodes && !paths) return;
@@ -188,15 +197,13 @@ export class UnionFind{
     changeSettings(config:Config):void{
         if(typeof config === "object"){
             if(config.unionMode){
-                let modes = new Set([unionMode.height,unionMode.compress,unionMode.normal]);
-                if(!modes.has(config.unionMode)){
-                    throw new TypeError("Config unionMode is illegal")
+                if(!Object.prototype.hasOwnProperty.call(unionMode,[config.unionMode])){
+                    throw new TypeError("Config unionMode is illegal");
                 }
             }
             if(config.repeatExistNode){
-                let modes = new Set([repeatExistNode.ignore,repeatExistNode.error,repeatExistNode.warning]);
-                if(!modes.has(config.repeatExistNode)){
-                    throw new TypeError("Config repeatExistNode is illegal")
+                if(!Object.prototype.hasOwnProperty.call(repeatExistNode,[config.repeatExistNode])){
+                    throw new TypeError("Config repeatExistNode is illegal");
                 }
             }
             if(config.customToString && typeof config.customToString != "function"){
@@ -212,6 +219,16 @@ export class UnionFind{
      * @description Union two Nodes
      * @param nodeA target node
      * @param nodeB source node
+     * @example <caption>Basic Usage</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c"],[["a","b"]]);
+     * unionFind.union("b","c");// => "b" is the parent of "c"
+     * </pre>
+     * @example <caption>Compression Union</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c","d"],[["a","b","c"]],{unionMode:unionMode.compress});
+     * unionFind.union("c","d");// => "a" is the parent of "d"
+     * </pre>
      */
     union (nodeA:UnionNode,nodeB:UnionNode):void;
     union (nodeA:any,nodeB:any):void

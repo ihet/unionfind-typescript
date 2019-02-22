@@ -1,0 +1,7 @@
+/src
+/.nyc_output
+/coverage
+/test
+/doc
+.travis.yml
+.idea

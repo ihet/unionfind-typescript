@@ -98,6 +98,16 @@ export declare class UnionFind {
      * @description Union two Nodes
      * @param nodeA target node
      * @param nodeB source node
+     * @example <caption>Basic Usage</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c"],[["a","b"]]);
+     * unionFind.union("b","c");// => "b" is the parent of "c"
+     * </pre>
+     * @example <caption>Compression Union</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c","d"],[["a","b","c"]],{unionMode:unionMode.compress});
+     * unionFind.union("c","d");// => "a" is the parent of "d"
+     * </pre>
      */
     union(nodeA: UnionNode, nodeB: UnionNode): void;
     union(nodeA: any, nodeB: any): void;

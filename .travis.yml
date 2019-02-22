@@ -1,22 +1,23 @@
 language: node_js
 node_js:
-    - 11
-    - 10
-    - 9
-    - 8
-    - 7
-    - 6
+- 11
+- 10
+- 9
+- 8
+- 7
+- 6
 branches:
   only:
-    - master
+  - master
 scripts:
-  - npm install codecov -g
+- npm install codecov -g
 after_success:
-  - codecov
+- codecov
 deploy:
   provider: npm
-  email: "ihetqxl@gmail.com"
-  api_key: "88479683-7323-4657-8f71-87976a9f41f2"
+  email: ihetqxl@gmail.com
+  api_key:
+    secure: mgIKi38atr+cMc4QcvrxEOZieyqaCFFBj4JKA8GJgIwadziy9dZrBkBf3vF7P4UVycXQLD6T9DDFnvB8BrO/O+U5jwzxwJwYZ2urRF68AZsaflCMBAlJQxK4xjDPXAdtm1Zk+O/3V5dlSTvc3sq0IpuCE0OJqlWGQlAKG3W6ynB5y8YBaMwpNSRhD4/4jKstNBWbI2ZrlvHdIp248jXFZS9FYtdJuINoHc9n0lsqbucGGK/A7Lxi7PTT+MBJpcu7QR0SjjfGk4fePl3yUjAg26f44i/1jAeiFGEzoKBd0HktxHzHVis2n0Bouw5pkJxzMLWjGfC6Q+/NR4O9kkfaMchd9cVX5aghE71X7qWT72YbCbOA6fkbc2uAclCWRhtOkqOK4cPY12yp8B3uwe1J4ftncKJwcqVT7t6+ZChwpBTlqCpynzTyx+Dl4YxLvkH1+ipQ6fmojFkmNj3PXnO8jp+hfdzlvhnusBnnApWj85ZsBdlGl/qhlQuw6JcskvvYcHYTv6H0RaZTNZfnxkFqxTQU5Fax+9POqPmWANouQfigMm7ZloXGOG70qZEAgkSbCFt2tZYlVtSA/3cQqqQl41JoEPM3ZhwArEXbWXZnLN6DCqRwPyylulsWjVnfdpqEaht1cKdtR+tok14SbQV4GyKMR7KTvsLHiHEIkspfqFM=
   skip_cleanup: true
   on:
     branch: master
