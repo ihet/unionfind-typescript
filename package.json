@@ -7,7 +7,7 @@
     "build-tsc": "tsc",
     "mocha-test": "nyc mocha ./test/*.js --reporter=json > coverage/coverage.json",
     "test": "npm run build-tsc && npm run mocha-test &&  nyc report --reporter=text-lcov > coverage/coverage.lcov",
-    "doc": "typedoc  --out ./doc ./src --readme README.MD"
+    "doc": "typedoc  --out ./docs ./src --readme README.MD"
   },
   "nyc": {
     "extension": [

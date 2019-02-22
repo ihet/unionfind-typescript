@@ -2,6 +2,7 @@
 /.nyc_output
 /coverage
 /test
+/docs
 /doc
 .travis.yml
 .idea
