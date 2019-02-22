@@ -100,6 +100,15 @@ var UnionFind = /** @class */ (function () {
      * @description Add  subtrees
      * @param nodes Nodes Array
      * @param paths Path Array
+     * @example <caption>Base Usage</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c"]);
+     * unionFind.addSubtree(
+     *     ["d","e"],
+     *     [ ["a","b","c"],["d","e"]]
+     * );
+     * // => "a","b","c" is a subtree, "d","e" is a subtree
+     * </pre>
      */
     UnionFind.prototype.addSubtree = function (nodes, paths) {
         if (!nodes && !paths)

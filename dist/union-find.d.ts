@@ -80,6 +80,15 @@ export declare class UnionFind {
      * @description Add  subtrees
      * @param nodes Nodes Array
      * @param paths Path Array
+     * @example <caption>Base Usage</caption>
+     * <pre>
+     * let unionFind = new UnionFind(["a","b","c"]);
+     * unionFind.addSubtree(
+     *     ["d","e"],
+     *     [ ["a","b","c"],["d","e"]]
+     * );
+     * // => "a","b","c" is a subtree, "d","e" is a subtree
+     * </pre>
      */
     addSubtree(nodes?: any[] | Set<any>, paths?: any[][] | Set<any[]>): void;
     protected _addNodes(nodes: any[] | Set<any>): void;
